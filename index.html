@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fulmen — Launch software for independent labels</title>
+<meta name="description" content="Fulmen runs launches for independent labels: waitlists, lookbooks, social scheduling, fair queues and checkout in one place.">
+<meta name="theme-color" content="#060607">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- the Fulmen mark: an outlined bolt (thin line, like the rest of the UI) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <linearGradient id="wireGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a93c8"/><stop offset=".55" stop-color="#dbb59d"/><stop offset="1" stop-color="#ff8d3f"/></linearGradient>
+  <symbol id="bolt" viewBox="-8 -8 146 216"><path d="M72 0h40L78 82h30L28 200l24-92H18z" fill="none" stroke="currentColor" stroke-width="11" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ LOADER — a dusk orb rises out of black ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="orb orb-dusk loader-orb"><div class="orb-fill"></div></div>
+  <span class="loader-word"><svg><use href="#bolt"/></svg>Fulmen</span>
+  <span class="loader-count" id="count">000</span>
+</div>
+
+<!-- fixed nav: appears once the hero's in-window nav has scrolled away -->
+<header class="float-nav" id="floatNav">
+  <a class="logo" href="#top" aria-label="Fulmen home"><svg><use href="#bolt"/></svg>Fulmen</a>
+  <nav aria-label="Primary"><a href="#product">Product</a><a href="#process">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+  <a href="start.html" class="pill pill-light pill-sm">Start free</a>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO — full-screen app: nav, orbs, pill rows ============ -->
+<section class="hero" aria-label="Introduction">
+  <div class="window" id="window">
+    <header class="win-nav">
+      <a class="logo" href="#top" aria-label="Fulmen home"><svg><use href="#bolt"/></svg>Fulmen</a>
+      <nav aria-label="Primary"><a href="#product">Product</a><a href="#process">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+      <div class="win-cta">
+        <button class="ask-chip" type="button" data-ask aria-haspopup="dialog"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>Ask Fulmen<kbd>⌘K</kbd></button>
+        <a href="#start" class="win-sign">Sign in</a><a href="start.html" class="pill pill-light pill-sm">Start free</a>
+      </div>
+    </header>
+
+    <div class="win-side">
+      <h1>Your drop keeps selling, even while you sleep.</h1>
+      <p>Fulmen runs launches for independent labels — waitlists, posts, the queue and checkout.</p>
+      <div class="win-actions"><a href="start.html" class="pill pill-light">Start free</a><a href="#product" class="pill pill-ghost">See the product</a></div>
+    </div>
+
+    <div class="win-main">
+      <div class="orbs">
+        <div class="orb orb-dusk orb-status" data-follow><div class="orb-fill"></div>
+          <div class="orb-body"><span class="spinner" aria-hidden="true"></span><p id="orbStatus" aria-live="polite">Scanning drops…</p></div>
+        </div>
+        <div class="orb orb-silver orb-stats" data-follow><div class="orb-fill"></div>
+          <div class="orb-body"><small>Drop 004 revenue</small><b class="mono-num" id="revenue">$0.00</b><small>Sell-through</small><b class="mono-num small">+<span id="sellthrough">0</span>%</b></div>
+        </div>
+      </div>
+
+      <div class="rows" id="rows">
+        <div class="row row-tools">
+          <button class="row-search" type="button" data-ask aria-label="Search drops"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg></button>
+          <span class="row-summary"><span><b>96%</b> sell-through, <b id="dropCount">4</b> drops</span></span>
+          <span class="row-filter" role="group" aria-label="Filter drops">
+            <button type="button" aria-pressed="true" data-filter="all">All</button><button type="button" aria-pressed="false" data-filter="live">Live</button><button type="button" aria-pressed="false" data-filter="soon">Upcoming</button>
+          </span>
+        </div>
+        <div class="row row-drop on" data-status="live">
+          <span class="row-icons"><img src="assets/denim.webp" alt=""><i><svg><use href="#bolt"/></svg></i></span>
+          <span class="row-name"><b>Raw Denim Jacket</b>Nomad Supply</span>
+          <span class="row-stat"><b>98%</b>Sold</span><span class="row-stat"><b>300</b>Units</span><span class="row-stat"><b>11:04</b>Sell-out</span>
+        </div>
+        <div class="row row-drop" data-status="live">
+          <span class="row-icons"><img src="assets/lookbook.webp" alt=""><i><svg><use href="#bolt"/></svg></i></span>
+          <span class="row-name"><b>Wide-Brim Hat</b>Halfmoon</span>
+          <span class="row-stat"><b>82%</b>Sold</span><span class="row-stat"><b>120</b>Units</span><span class="row-stat"><b>2:31:40</b>Left</span>
+        </div>
+        <div class="row row-drop" data-status="soon">
+          <span class="row-icons"><img src="assets/crew-1.webp" alt=""><i><svg><use href="#bolt"/></svg></i></span>
+          <span class="row-name"><b>Fleece Hoodie</b>Tundra Club</span>
+          <span class="row-stat"><b>1,204</b>Waitlist</span><span class="row-stat"><b>450</b>Units</span><span class="row-stat"><b>Fri</b>Restock</span>
+        </div>
+        <div class="row row-drop" data-status="soon">
+          <span class="row-icons"><img src="assets/sku-2.webp" alt=""><i><svg><use href="#bolt"/></svg></i></span>
+          <span class="row-name"><b>Selvedge Overshirt</b>Raw Arc</span>
+          <span class="row-stat"><b>866</b>Waitlist</span><span class="row-stat"><b>200</b>Units</span><span class="row-stat"><b>Sat</b>Opens</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ASK FULMEN — assistant card (search ⌘K) ============ -->
+<div class="ask" id="ask" role="dialog" aria-modal="true" aria-labelledby="askTitle" hidden>
+  <div class="ask-card" data-lenis-prevent>
+    <div class="ask-top">
+      <button class="ask-ico" type="button" data-ask-close aria-label="Close"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+      <span id="askTitle" class="label">Ask Fulmen</span>
+      <button class="ask-ico" type="button" id="askExpand" aria-label="Expand"><svg viewBox="0 0 20 20"><path d="M12 4h4v4M8 16H4v-4M16 4l-5 5M4 16l5-5"/></svg></button>
+    </div>
+    <p class="ask-answer" id="askAnswer" aria-live="polite">Ask about a drop, a label or a product. Try one below.</p>
+    <div class="ask-results" id="askResults"></div>
+    <div class="ask-chips" id="askChips">
+      <button type="button">How is Drop 004 doing?</button><button type="button">When does the hoodie restock?</button><button type="button">Find the wide-brim hat</button>
+    </div>
+    <div class="ask-glow" aria-hidden="true"></div>
+    <form class="ask-bar" id="askForm">
+      <button class="ask-ico" type="button" aria-label="Voice"><svg viewBox="0 0 20 20"><path d="M3 8v4h3l4 3V5L6 8zM13 7.5a3.5 3.5 0 010 5M15.5 5a7 7 0 010 10"/></svg></button>
+      <label class="sr" for="askInput">Ask Fulmen</label>
+      <input id="askInput" type="search" placeholder="Search drops, labels, products…" autocomplete="off">
+      <button class="ask-ico" type="submit" aria-label="Send"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 6l4 4-4 4"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ 01 — WHAT IT IS: drifting rows of feature pills around an orb ============ -->
+<section class="sec what" id="what">
+  <div class="sec-head">
+    <span class="label">01 — What it is</span>
+    <h2 class="statement" data-words>One platform from first sample to <em>sold out.</em> Every tool a drop needs, nothing it doesn't.</h2>
+  </div>
+  <div class="panel wall" id="wall">
+    <div class="wall-rows" id="wallRows" role="group" aria-label="Fulmen features"></div>
+    <div class="orb wall-orb" id="wallOrb"><div class="orb-fill"></div>
+      <div class="orb-body"><span class="label" id="wallKey">Point at a pill</span><p id="wallText">Every pill is a part of Fulmen. Hover one to see what it does.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — PRODUCT: one drop, everywhere at once (dusk globe + live orders) ============ -->
+<section class="sec product" id="product">
+  <div class="sec-head">
+    <span class="label">02 — Product</span>
+    <h2 class="statement" data-words>One drop, <em>everywhere at once.</em> Fans in 40 countries join the same queue.</h2>
+  </div>
+  <div class="panel globe-stage" id="globeStage" data-reveal>
+    <div class="globe-wrap" id="globeWrap">
+      <canvas class="globe" id="globe" role="img" aria-label="A dusk globe: orders fly from Leh to buyers in London, Berlin, Nairobi, Lagos and Dubai"></canvas>
+      <div class="gcard" data-city="London"><img src="assets/crew-1.webp" alt=""><span><b>@tenzin.wears</b><code>Pass NS-004-0001</code></span><i class="check" aria-hidden="true"></i></div>
+      <div class="gcard" data-city="Berlin"><img src="assets/crew-4.webp" alt=""><span><b>@offgrid.ari</b><code>Order #2041 · paid</code></span><i class="check" aria-hidden="true"></i></div>
+      <div class="gcard gcard-ship" data-city="Nairobi"><img src="assets/sku-1.webp" alt=""><span><b>@kiln.and.co</b><code>Order #2077 · shipping</code></span><i class="check" aria-hidden="true"></i>
+        <div class="ship"><span class="ticks"><span id="shipBar"></span></span><em id="shipPct">0%</em></div>
+      </div>
+      <span class="hint">Drag to spin</span>
+    </div>
+    <div class="globe-side">
+      <div class="gs-head"><span class="orb gs-orb"><span class="orb-fill"></span></span><span><b>Drop 004</b>Nomad Supply · live</span></div>
+      <div class="gs-stats">
+        <div><b>40</b><span>Countries</span></div><div><b id="orderCount">2,114</b><span>Orders</span></div><div><b>18</b><span>Currencies</span></div>
+      </div>
+      <span class="label">Live orders</span>
+      <ol class="feed" id="feed" aria-live="polite">
+        <li><img src="assets/crew-2.webp" alt=""><span><b>@northline</b>Oslo</span><em>€128</em><i class="check" aria-hidden="true"></i></li>
+        <li><img src="assets/crew-3.webp" alt=""><span><b>@sol.club</b>Madrid</span><em>€128</em><i class="check" aria-hidden="true"></i></li>
+        <li><img src="assets/sku-4.webp" alt=""><span><b>@kontor</b>Berlin</span><em>€128</em><i class="check" aria-hidden="true"></i></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — FIVE TOOLS: stacked cards that pile up as you scroll ============ -->
+<section class="sec tools" id="tools">
+  <div class="sec-head">
+    <span class="label">03 — Five tools</span>
+    <h2 class="statement" data-words>Everything a drop needs, <em>stacked in one place.</em></h2>
+  </div>
+  <div class="stack" id="stack">
+    <article class="tool-card" style="--i:0; --c:#ffb27a">
+      <header class="tc-head"><span class="lockup"><svg><use href="#bolt"/></svg><span><small>Fulmen</small><b>Drops</b></span></span><span class="tc-num">01</span></header>
+      <div class="tc-body">
+        <div class="tc-copy">
+          <h3>Countdowns, waitlists <em>and a fair queue.</em></h3>
+          <ul class="tags"><li>Countdown</li><li>Waitlist</li><li>Fair queue</li><li>Held carts</li><li>Checkout</li></ul>
+          <p>Set the second it opens and how many exist. When it opens, everyone waits in the same line and gets five minutes to pay.</p>
+        </div>
+        <div class="tc-ui ui-drops">
+          <div class="orb tc-orb"><div class="orb-fill"></div><div class="orb-body"><small>Drop 004 opens in</small><b class="mono-num" id="dropTimer">02:14:09</b></div></div>
+          <div class="mini-rows"><div><b>4,812</b>Waiting</div><div><b>312</b>Carts held</div><div><b>5:00</b>To pay</div></div>
+        </div>
+      </div>
+    </article>
+    <article class="tool-card" style="--i:1; --c:#ff8d3f">
+      <header class="tc-head"><span class="lockup"><svg><use href="#bolt"/></svg><span><small>Fulmen</small><b>Lookbook</b></span></span><span class="tc-num">02</span></header>
+      <div class="tc-body">
+        <div class="tc-copy">
+          <h3>Campaign pages <em>without a developer.</em></h3>
+          <ul class="tags"><li>Pages</li><li>Looks</li><li>Shop the look</li><li>Your domain</li></ul>
+          <p>Drag in the shoot, pick the products, publish. The page carries your waitlist and the countdown on its own.</p>
+        </div>
+        <div class="tc-ui ui-look">
+          <div class="look-frame"><img src="assets/lookbook.webp" alt="Copper-haired model under a wide black hat" loading="lazy"><span class="look-cap"><b>Cut through</b>SS26 · 12 looks</span></div>
+          <div class="look-row"><img src="assets/sku-1.webp" alt=""><img src="assets/sku-2.webp" alt=""><img src="assets/sku-3.webp" alt=""><img src="assets/sku-4.webp" alt=""><span class="pill pill-light pill-sm">Publish</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="tool-card" style="--i:2; --c:#8fd3ff">
+      <header class="tc-head"><span class="lockup"><svg><use href="#bolt"/></svg><span><small>Fulmen</small><b>Social</b></span></span><span class="tc-num">03</span></header>
+      <div class="tc-body">
+        <div class="tc-copy">
+          <h3>Every post, <em>on schedule.</em></h3>
+          <ul class="tags"><li>Instagram</li><li>TikTok</li><li>Threads</li><li>Pinterest</li></ul>
+          <p>Plan the whole run around the drop date. Every look is cropped for every channel by the asset studio.</p>
+        </div>
+        <div class="tc-ui ui-social">
+          <div class="sched"><img src="assets/closeup.webp" alt=""><span><b>Drop 004 teaser</b>Thu 18:00 · Instagram</span><em class="on">Scheduled</em></div>
+          <div class="sched"><img src="assets/crew-1.webp" alt=""><span><b>Fit check</b>Fri 09:00 · TikTok</span><em>Draft</em></div>
+          <div class="sched"><img src="assets/location.webp" alt=""><span><b>Behind the shoot</b>Sat 12:00 · Threads</span><em class="on">Scheduled</em></div>
+        </div>
+      </div>
+    </article>
+    <article class="tool-card" style="--i:3; --c:#d79bff">
+      <header class="tc-head"><span class="lockup"><svg><use href="#bolt"/></svg><span><small>Fulmen</small><b>Community</b></span></span><span class="tc-num">04</span></header>
+      <div class="tc-body">
+        <div class="tc-copy">
+          <h3>Fans' posts <em>on your page.</em></h3>
+          <ul class="tags"><li>Tagged posts</li><li>Approvals</li><li>Credits</li></ul>
+          <p>Posts that tag you land in a queue. Approve them and they show on your drop page, credited to the creator.</p>
+        </div>
+        <div class="tc-ui ui-comm">
+          <div class="faces"><img src="assets/crew-1.webp" alt=""><img src="assets/crew-2.webp" alt=""><img src="assets/crew-3.webp" alt=""><img src="assets/crew-4.webp" alt=""><span><b id="tagCount">312</b> tagged posts</span></div>
+          <div class="sched approve"><img src="assets/crew-2.webp" alt=""><span><b>@offgrid.ari</b>tagged @nomadsupply</span><button class="pill pill-ghost pill-sm" type="button" data-approve>Approve</button></div>
+        </div>
+      </div>
+    </article>
+    <article class="tool-card" style="--i:4; --c:#e8e8ec">
+      <header class="tc-head"><span class="lockup"><svg><use href="#bolt"/></svg><span><small>Fulmen</small><b>Brand kit</b></span></span><span class="tc-num">05</span></header>
+      <div class="tc-body">
+        <div class="tc-copy">
+          <h3>Your type, colour <em>and voice.</em></h3>
+          <ul class="tags"><li>Logo</li><li>Type</li><li>Palette</li><li>Voice</li></ul>
+          <p>Upload them once. Every page, pass, email and post picks them up, so a drop always looks like you.</p>
+        </div>
+        <div class="tc-ui ui-kit">
+          <div class="kit-sw"><span class="orb"><span class="orb-fill"></span></span><span class="orb tone-ember"><span class="orb-fill"></span></span><span class="orb tone-ice"><span class="orb-fill"></span></span><span class="orb tone-violet"><span class="orb-fill"></span></span><span class="orb orb-silver"><span class="orb-fill"></span></span></div>
+          <div class="kit-type"><span class="kit-aa">Aa</span><span><b>Geist</b>Headlines · body</span><span class="kit-script">Nomad</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 04 — WAITLIST PASSES: a deck you can drag through; claims drop in from above ============ -->
+<section class="sec passes" id="passes">
+  <div class="sec-head">
+    <span class="label">04 — Waitlist passes</span>
+    <h2 class="statement" data-words>Every spot on the waitlist is a <em>pass.</em> Numbered, named, first in line.</h2>
+  </div>
+  <div class="panel pass-stage" id="passStage" data-reveal>
+    <div class="pass-copy">
+      <p>It lives in the fan's wallet. When the drop goes live it opens the queue, and it can't be passed on.</p>
+      <ul class="pass-facts">
+        <li><b>One tap</b> into Apple &amp; Google Wallet</li>
+        <li><b>Skips</b> the queue at drop time</li>
+        <li><b>Can't</b> be resold or shared</li>
+      </ul>
+      <form class="pass-form" id="passForm">
+        <label class="sr" for="passInput">Your name</label>
+        <input id="passInput" maxlength="18" placeholder="Put your name on a pass" autocomplete="off">
+        <button class="pill pill-light pill-sm" type="submit">Claim pass</button>
+      </form>
+    </div>
+    <div class="deck" id="deck">
+      <div class="deck-glow" aria-hidden="true"></div>
+      <div class="deck-cards" id="deckCards" aria-label="Passes. Drag the front pass away to see the next one.">
+        <button class="pass tone-violet" type="button"><span class="pass-top"><span class="pass-label">Raw Arc</span><span class="pass-kind">Early access</span></span>
+          <span class="pass-body"><span><small>Queue</small><b class="pass-no">#0219</b></span><span><small>Holder</small><b class="pass-name">Mika S.</b></span><span><small>Opens</small><b>Sat 10:00</b></span><span class="pass-code"></span></span><span class="pass-sheen"></span></button>
+        <button class="pass tone-ice" type="button"><span class="pass-top"><span class="pass-label">Tundra Club</span><span class="pass-kind">Restock</span></span>
+          <span class="pass-body"><span><small>Queue</small><b class="pass-no">#0088</b></span><span><small>Holder</small><b class="pass-name">Ines L.</b></span><span><small>Opens</small><b>Fri 18:00</b></span><span class="pass-code"></span></span><span class="pass-sheen"></span></button>
+        <button class="pass tone-ember" type="button"><span class="pass-top"><span class="pass-label">Halfmoon</span><span class="pass-kind">Early access</span></span>
+          <span class="pass-body"><span><small>Queue</small><b class="pass-no">#0412</b></span><span><small>Holder</small><b class="pass-name">Joon P.</b></span><span><small>Opens</small><b>Sun 12:00</b></span><span class="pass-code"></span></span><span class="pass-sheen"></span></button>
+        <button class="pass pass-mine" type="button"><span class="pass-top"><span class="pass-label">Nomad Supply</span><span class="pass-kind">Drop 004</span></span>
+          <span class="pass-body"><span><small>Queue</small><b class="pass-no">#0001</b></span><span><small>Holder</small><b class="pass-name">Tenzin D.</b></span><span><small>Opens</small><b>Thu 18:00</b></span><span class="pass-code"></span></span><span class="pass-sheen"></span></button>
+      </div>
+      <span class="hint deck-hint">Drag the pass · or tap one behind it</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — ASSET STUDIO: one photo, a crop window that reshapes per channel ============ -->
+<section class="sec studio" id="studio">
+  <div class="sec-head">
+    <span class="label">05 — Asset studio</span>
+    <h2 class="statement" data-words>One shoot, <em>1,240 assets.</em> Every crop for every channel, made for you.</h2>
+  </div>
+  <div class="panel crop-stage" id="cropStage" data-reveal>
+    <div class="crop-view" id="cropView">
+      <img src="assets/location.webp" alt="Campaign photo: prayer flags over Pangong Tso, Ladakh" loading="lazy">
+      <div class="crop-win" id="cropWin"><i></i><i></i><i></i><i></i><span class="crop-tag" id="cropTag">4:5 · 1080 × 1350</span></div>
+    </div>
+    <div class="crop-side">
+      <div class="crop-list" id="cropList" role="tablist" aria-label="Formats">
+        <button role="tab" aria-selected="true" data-r="0.8" data-x="0.5" data-px="1080 × 1350"><span class="ratio" style="--r:.8"></span><span><b>Instagram feed</b>4:5</span><em>312</em></button>
+        <button role="tab" aria-selected="false" data-r="0.5625" data-x="0.42" data-px="1080 × 1920"><span class="ratio" style="--r:.5625"></span><span><b>Stories &amp; TikTok</b>9:16</span><em>288</em></button>
+        <button role="tab" aria-selected="false" data-r="1" data-x="0.6" data-px="1080 × 1080"><span class="ratio" style="--r:1"></span><span><b>Grid &amp; thumbnails</b>1:1</span><em>240</em></button>
+        <button role="tab" aria-selected="false" data-r="1.7778" data-x="0.5" data-px="1920 × 1080"><span class="ratio" style="--r:1.7778"></span><span><b>Web banner</b>16:9</span><em>196</em></button>
+        <button role="tab" aria-selected="false" data-r="0.6667" data-x="0.56" data-px="1200 × 1800"><span class="ratio" style="--r:.6667"></span><span><b>Product page</b>2:3</span><em>204</em></button>
+      </div>
+      <div class="crop-export">
+        <span><b>1,240</b> assets from one shoot</span>
+        <span class="ticks"><span id="exportBar"></span></span>
+        <button class="pill pill-light pill-sm" type="button" id="exportBtn">Export all</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LIVE NOW: a turning wheel of cities ============ -->
+<section class="sec live" id="live">
+  <div class="sec-head">
+    <span class="label">06 — Live now</span>
+    <h2 class="statement" data-words>Somewhere, a drop is going live <em>right now.</em></h2>
+  </div>
+  <div class="panel wheel-stage" id="wheelStage" data-reveal>
+    <span class="wheel-dot orb" aria-hidden="true"><span class="orb-fill"></span></span>
+    <ul class="wheel" id="wheel" aria-label="Cities with a drop live now"></ul>
+    <div class="wheel-nav"><button class="ask-ico" type="button" id="wheelUp" aria-label="Previous city"><svg viewBox="0 0 20 20"><path d="M5 12l5-5 5 5"/></svg></button><button class="ask-ico" type="button" id="wheelDown" aria-label="Next city"><svg viewBox="0 0 20 20"><path d="M5 8l5 5 5-5"/></svg></button></div>
+    <div class="wheel-card" id="wheelCard" aria-live="polite">
+      <span class="label">Live in</span>
+      <h3 id="wcCity">Leh, India</h3>
+      <p class="wc-time"><span class="live-dot"></span><span id="wcTime">--:--</span> local time</p>
+      <div class="wc-row">
+        <img id="wcImg" src="assets/denim.webp" alt="">
+        <span class="wc-name"><b id="wcProduct">Raw Denim Jacket</b><span id="wcLabel">Nomad Supply</span></span>
+        <span class="wc-stat"><b id="wcSold">98%</b>Sold</span>
+        <span class="wc-stat"><b id="wcQueue">2,114</b>Queue</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — HOW A DROP RUNS: zigzag steps joined by dashed paths that draw as you scroll ============ -->
+<section class="sec how" id="process">
+  <div class="sec-head">
+    <span class="label">07 — How a drop runs</span>
+    <h2 class="statement" data-words>Thirty days, four moves, <em>one dashboard.</em></h2>
+  </div>
+  <div class="panel how-panel" id="how">
+    <svg class="how-lines" id="howLines" aria-hidden="true"></svg>
+    <ol class="steps" id="steps">
+      <li class="how-step"><span class="dur"><span>30 days out</span></span>
+        <div class="step-main"><div class="step-top"><svg class="wire" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><ellipse cx="24" cy="24" rx="20" ry="8"/><ellipse cx="24" cy="24" rx="8" ry="20"/></svg><h3><b>1</b>Plan</h3></div>
+        <p>Set the date, the units and the story. Fulmen builds the calendar backwards from launch.</p></div></li>
+      <li class="how-step"><span class="dur"><span>7 days out</span></span>
+        <div class="step-main"><div class="step-top"><svg class="wire" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="24" rx="20" ry="20"/><ellipse cx="20" cy="24" rx="16" ry="20"/><ellipse cx="16" cy="24" rx="12" ry="20"/><ellipse cx="12" cy="24" rx="8" ry="20"/></svg><h3><b>2</b>Tease</h3></div>
+        <p>The lookbook goes live with a waitlist. Posts roll out on schedule and passes start numbering.</p></div></li>
+      <li class="how-step"><span class="dur"><span>Launch hour</span></span>
+        <div class="step-main"><div class="step-top"><svg class="wire" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="14" cy="24" rx="8" ry="20"/><ellipse cx="24" cy="24" rx="8" ry="20"/><ellipse cx="34" cy="24" rx="8" ry="20"/></svg><h3><b>3</b>Drop</h3></div>
+        <p>The countdown hits zero. Pass holders go first and the fair queue handles the rush.</p></div></li>
+      <li class="how-step"><span class="dur"><span>Next morning</span></span>
+        <div class="step-main"><div class="step-top"><svg class="wire" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="13"/><circle cx="24" cy="24" r="6"/></svg><h3><b>4</b>Recap</h3></div>
+        <p>Sell-through, sources and your best community posts, in a report you'll actually read.</p></div></li>
+    </ol>
+    <div class="ready">
+      <div><h3>Ready to launch your <em>first drop?</em></h3><p>Set-up takes about four minutes. Free until your first drop sells.</p></div>
+      <a class="go" href="start.html"><span class="go-ico" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 6l4 4-4 4"/></svg></span>Get started</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — PRICING: a hero-style tools row, plans in a tray, a "not sure?" banner ============ -->
+<section class="sec pricing" id="pricing">
+  <div class="sec-head">
+    <span class="label">08 — Pricing</span>
+    <h2 class="statement" data-words>Free until your first drop <em>sells.</em></h2>
+    <div class="bill" role="group" aria-label="Billing period">
+      <button type="button" aria-pressed="true" data-bill="m">Monthly</button><button type="button" aria-pressed="false" data-bill="y">Yearly −20%</button>
+    </div>
+  </div>
+  <div class="price-tools" id="calc" data-reveal>
+    <span class="orb pt-orb" aria-hidden="true"><span class="orb-fill"></span></span>
+    <div class="pt-read"><label for="volume">What do you sell in a month?</label><output class="mono-num" id="volOut" for="volume">$7,700</output></div>
+    <div class="pt-slide horizon">
+      <input type="range" id="volume" min="0" max="100" step="0.5" value="63">
+      <div class="horizon-scale" aria-hidden="true"><span>$0</span><span>$1k</span><span>$10k</span><span>$100k</span></div>
+    </div>
+  </div>
+  <div class="tray" id="plans">
+    <div class="plan" data-fee=".03">
+      <div class="plan-top"><span class="orb tone-ice plan-orb"><span class="orb-fill"></span></span><span><b>Studio</b>For your first collection</span><span class="plan-best">Best for you</span></div>
+      <p class="amount"><b data-m="0" data-y="0">$0</b><span>/mo + 3% per sale</span></p>
+      <p class="plan-total">At your volume <b class="mono-num">$0</b> a month, all in</p>
+      <ul class="feat"><li>Drops a month<b>1</b></li><li>Waitlist size<b>1,000</b></li><li>Fee per sale<b>3%</b></li><li>Seats<b>1</b></li><li>Asset crops<b>100</b></li></ul>
+      <a href="start.html?plan=studio" class="pill pill-ghost">Start free</a>
+    </div>
+    <div class="plan" data-fee=".01">
+      <div class="plan-top"><span class="orb plan-orb"><span class="orb-fill"></span></span><span><b>Label</b>For brands with a calendar</span><span class="plan-best">Best for you</span></div>
+      <p class="amount"><b data-m="49" data-y="39">$49</b><span>/mo + 1% per sale</span></p>
+      <p class="plan-total">At your volume <b class="mono-num">$0</b> a month, all in</p>
+      <ul class="feat"><li>Drops a month<b>Unlimited</b></li><li>Waitlist size<b>25,000</b></li><li>Fee per sale<b>1%</b></li><li>Seats<b>5</b></li><li>Asset crops<b>2,000</b></li></ul>
+      <a href="start.html?plan=label" class="pill pill-ghost">Start 14-day trial</a>
+    </div>
+    <div class="plan" data-fee="0">
+      <div class="plan-top"><span class="orb tone-violet plan-orb"><span class="orb-fill"></span></span><span><b>House</b>For teams and multi-brand houses</span><span class="plan-best">Best for you</span></div>
+      <p class="amount"><b data-m="199" data-y="159">$199</b><span>/mo, 0% per sale</span></p>
+      <p class="plan-total">At your volume <b class="mono-num">$0</b> a month, all in</p>
+      <ul class="feat"><li>Drops a month<b>Unlimited</b></li><li>Waitlist size<b>Unlimited</b></li><li>Fee per sale<b>0%</b></li><li>Seats<b>15</b></li><li>Asset crops<b>Unlimited</b></li></ul>
+      <a href="start.html?plan=house" class="pill pill-ghost">Talk to us</a>
+    </div>
+  </div>
+  <div class="unsure">
+    <span class="orb unsure-orb" aria-hidden="true"><span class="orb-fill"></span></span>
+    <div><h3>Not sure which plan fits?</h3><p>Ask Fulmen. Tell it what your last drop sold and it'll do the maths.</p></div>
+    <button class="pill pill-dark" type="button" data-ask>Ask Fulmen</button>
+  </div>
+</section>
+
+<!-- ============ 09 — QUESTIONS ============ -->
+<section class="sec faq" id="faq">
+  <div class="sec-head">
+    <span class="label">09 — Questions</span>
+    <h2 class="statement" data-words>Before you <em>drop.</em></h2>
+  </div>
+  <div class="faq-list">
+    <details><summary>Do I need a Shopify store?<i></i></summary><p>No. Fulmen has its own checkout. If you already run Shopify, connect it in two clicks and Fulmen syncs products and orders both ways.</p></details>
+    <details><summary>What happens when 20,000 people hit the drop at once?<i></i></summary><p>They join a fair queue. Every buyer gets a place in line and a held cart for five minutes, so nobody pays for an item that already sold out.</p></details>
+    <details><summary>Can my community posts really show on my site?<i></i></summary><p>Yes. Posts that tag your brand land in a review queue. Approve them and they appear on your drop page with credit to the creator.</p></details>
+    <details><summary>Which social channels does the scheduler support?<i></i></summary><p>Instagram, TikTok, Threads, Pinterest and X. The asset studio crops each look to the right ratio for each one.</p></details>
+    <details><summary>Can I leave whenever I want?<i></i></summary><p>Yes. Monthly plans cancel at any time, and you can export products, customers and orders as CSV whenever you like.</p></details>
+  </div>
+</section>
+
+<!-- ============ CTA — the orb at the centre of concentric rings ============ -->
+<section class="sec cta-sec" id="start">
+  <div class="cta">
+    <div class="rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="orb cta-orb"><div class="orb-fill"></div></div>
+    <h2 class="cta-title">Your next drop <em>starts here.</em></h2>
+    <form class="cta-form" id="ctaForm">
+      <label class="sr" for="email">Work email</label>
+      <input id="email" type="email" required placeholder="you@yourlabel.com" autocomplete="email">
+      <button class="pill pill-light" type="submit">Start free</button>
+    </form>
+    <p class="cta-note">14-day trial on Label. Set-up takes about four minutes.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-top">
+    <span class="foot-word">Fulmen</span>
+    <p class="foot-services">Drops, lookbooks, social scheduling,<br>community and the asset studio.</p>
+  </div>
+  <div class="foot-cols">
+    <div><span class="label">Product</span><a href="#tools">Drops</a><a href="#tools">Lookbook</a><a href="#tools">Social</a><a href="#studio">Asset studio</a></div>
+    <div><span class="label">Company</span><a href="#top">Journal</a><a href="#top">Careers</a><a href="#top">Press kit</a></div>
+    <div><span class="label">Elsewhere</span><a href="#top">Instagram</a><a href="#top">TikTok</a><a href="#top">LinkedIn</a></div>
+    <div class="foot-legal"><span>© 2026 Fulmen Labs<br>Made between Leh and Lisbon</span></div>
+  </div>
+</footer>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/land.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

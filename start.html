@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start free — Fulmen</title>
+<meta name="description" content="Set up Fulmen in three steps: you, your label, your first drop.">
+<meta name="theme-color" content="#060607">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="start.css">
+</head>
+<body class="start-page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bolt" viewBox="-8 -8 146 216"><path d="M72 0h40L78 82h30L28 200l24-92H18z" fill="none" stroke="currentColor" stroke-width="11" stroke-linejoin="round"/></symbol>
+</svg>
+
+<main class="start">
+  <!-- left: nav + the three-step form -->
+  <div class="start-left">
+    <header class="start-nav">
+      <a class="logo" href="index.html" aria-label="Fulmen home"><svg><use href="#bolt"/></svg>Fulmen</a>
+      <div class="progress" id="progress" role="progressbar" aria-label="Sign-up progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1"><span></span></div>
+      <span class="step-count mono" id="stepCount">Step 1 of 3</span>
+    </header>
+
+    <form class="start-form" id="startForm" novalidate>
+      <!-- STEP 1 — you -->
+      <fieldset class="step" data-step="1">
+        <legend class="sr">Your details</legend>
+        <span class="label">01 — You</span>
+        <h1 class="step-title">Let's start with <em>you.</em></h1>
+        <p class="step-sub">Free until your first drop sells. No card needed.</p>
+        <div class="field"><label for="fName">Full name</label><input id="fName" name="name" autocomplete="name" required placeholder="Tenzin Dorje" data-bind="name"><small class="err">Tell us your name.</small></div>
+        <div class="field"><label for="fEmail">Work email</label><input id="fEmail" name="email" type="email" autocomplete="email" required placeholder="you@yourlabel.com"><small class="err">That email doesn't look right.</small></div>
+        <div class="field"><label for="fPass">Password</label>
+          <div class="input-wrap"><input id="fPass" name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="8 characters or more"><button class="peek" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 20 20"><path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"/><circle cx="10" cy="10" r="2.5"/></svg></button></div>
+          <div class="strength" aria-live="polite"><span class="strength-bar"><span id="strengthBar"></span></span><span id="strengthText">8+ characters</span></div>
+          <small class="err">Use at least 8 characters.</small>
+        </div>
+        <div class="step-actions"><button class="pill pill-light" type="submit">Continue</button><span class="fine">By continuing you agree to the <a href="index.html#faq" class="u">terms</a>.</span></div>
+      </fieldset>
+
+      <!-- STEP 2 — your label -->
+      <fieldset class="step" data-step="2" hidden>
+        <legend class="sr">Your label</legend>
+        <span class="label">02 — Your label</span>
+        <h2 class="step-title">Tell us about your <em>label.</em></h2>
+        <p class="step-sub">This sets up your brand kit. You can change all of it later.</p>
+        <div class="field"><label for="fLabel">Label name</label><input id="fLabel" name="label" required maxlength="24" placeholder="Nomad Supply" data-bind="label"><small class="err">Your label needs a name.</small></div>
+        <div class="field"><span class="field-label" id="makeLbl">What do you make?</span>
+          <div class="chips" role="group" aria-labelledby="makeLbl">
+            <button type="button" aria-pressed="true">Apparel</button><button type="button" aria-pressed="false">Headwear</button><button type="button" aria-pressed="false">Footwear</button><button type="button" aria-pressed="false">Accessories</button><button type="button" aria-pressed="false">Homeware</button>
+          </div>
+        </div>
+        <div class="field"><span class="field-label" id="toneLbl">Pick your sky <small>(brand colour)</small></span>
+          <div class="swatches" role="radiogroup" aria-labelledby="toneLbl">
+            <button type="button" role="radio" aria-checked="true" data-tone="" aria-label="Dusk"><span class="orb"><span class="orb-fill"></span></span></button>
+            <button type="button" role="radio" aria-checked="false" data-tone="tone-ember" aria-label="Ember"><span class="orb tone-ember"><span class="orb-fill"></span></span></button>
+            <button type="button" role="radio" aria-checked="false" data-tone="tone-ice" aria-label="Ice"><span class="orb tone-ice"><span class="orb-fill"></span></span></button>
+            <button type="button" role="radio" aria-checked="false" data-tone="tone-violet" aria-label="Violet"><span class="orb tone-violet"><span class="orb-fill"></span></span></button>
+            <button type="button" role="radio" aria-checked="false" data-tone="tone-silver" aria-label="Silver"><span class="orb orb-silver"><span class="orb-fill"></span></span></button>
+          </div>
+        </div>
+        <div class="step-actions"><button class="pill pill-ghost" type="button" data-back>Back</button><button class="pill pill-light" type="submit">Continue</button></div>
+      </fieldset>
+
+      <!-- STEP 3 — first drop -->
+      <fieldset class="step" data-step="3" hidden>
+        <legend class="sr">Your first drop</legend>
+        <span class="label">03 — First drop</span>
+        <h2 class="step-title">Plan your first <em>drop.</em></h2>
+        <p class="step-sub">We'll build the waitlist, the passes and the countdown around it.</p>
+        <div class="field"><label for="fDrop">What's dropping?</label><input id="fDrop" name="drop" required maxlength="28" placeholder="Raw Denim Jacket" data-bind="drop"><small class="err">Name the product.</small></div>
+        <div class="field-row">
+          <div class="field"><label for="fDate">Opens on</label><input id="fDate" name="date" type="date" required><small class="err">Pick a date from today on.</small></div>
+          <div class="field"><label for="fTime">At</label><input id="fTime" name="time" type="time" required value="18:00"></div>
+        </div>
+        <div class="field"><span class="field-label" id="unitsLbl">Units</span>
+          <div class="stepper" role="group" aria-labelledby="unitsLbl">
+            <button type="button" data-step-by="-50" aria-label="50 fewer">−</button><output id="units" aria-live="polite">300</output><button type="button" data-step-by="50" aria-label="50 more">+</button>
+          </div>
+        </div>
+        <div class="field"><span class="field-label" id="planLbl">Plan</span>
+          <div class="plan-pick" role="radiogroup" aria-labelledby="planLbl">
+            <label><input type="radio" name="plan" value="studio"><span><b>Studio</b>$0 + 3%</span></label>
+            <label><input type="radio" name="plan" value="label" checked><span><b>Label</b>14-day trial</span></label>
+            <label><input type="radio" name="plan" value="house"><span><b>House</b>$199 / mo</span></label>
+          </div>
+        </div>
+        <div class="step-actions"><button class="pill pill-ghost" type="button" data-back>Back</button><button class="pill pill-light" type="submit">Create my drop</button></div>
+      </fieldset>
+
+      <!-- DONE -->
+      <div class="step step-done" data-step="4" hidden tabindex="-1">
+        <span class="label">You're in</span>
+        <h2 class="step-title" id="doneTitle">Welcome to Fulmen.</h2>
+        <p class="step-sub" id="doneText">Your first drop is set.</p>
+        <ul class="done-list">
+          <li><i></i>Waitlist page is live at <b id="doneUrl">fulmen.app/your-label</b></li>
+          <li><i></i>Passes ready to hand out, starting at <b>#0001</b></li>
+          <li><i></i>Setup link sent to <b id="doneEmail">your inbox</b></li>
+        </ul>
+        <div class="step-actions"><a class="pill pill-light" href="index.html">Back to home</a><button class="pill pill-ghost" type="button" id="restart">Start over</button></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- right: the live preview -->
+  <aside class="preview dusk" aria-label="Live preview">
+    <div class="preview-top"><span class="label">Live preview</span><span class="url-pill" id="pvUrl">fulmen.app/your-label</span></div>
+    <div class="orb preview-orb" id="pvOrb"><span class="orb-fill"></span>
+      <div class="orb-body"><b id="pvLabel">Your label</b><small id="pvDropLine">First drop · coming soon</small></div>
+    </div>
+    <div class="preview-pass">
+      <div class="pass front" id="pvPass"><span class="pass-top"><span class="pass-label" id="pvPassLabel">Your label</span><span class="pass-kind">Early access</span></span>
+        <span class="pass-body"><span><small>Queue</small><b class="pass-no">#0001</b></span><span><small>Holder</small><b class="pass-name" id="pvHolder">Your name</b></span><span><small>Opens</small><b id="pvOpens">—</b></span><span class="pass-code"></span></span><span class="pass-sheen"></span></div>
+    </div>
+    <p class="preview-note" id="pvNote">Everything updates as you type.</p>
+  </aside>
+</main>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js"></script>
+<script src="start.js"></script>
+</body>
+</html>
