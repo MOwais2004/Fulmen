@@ -1,5 +1,10 @@
 # Fulmen — SaaS landing page + sign-up
 
+Live: https://mowais2004.github.io/Fulmen/
+
+https://github.com/user-attachments/assets/b18a8337-d21d-4394-82e0-b8717e31c14f
+
+
 **Fulmen** (Latin for *lightning*) is a fictional SaaS: the **launch platform for independent clothing labels**. It runs the waitlist, the lookbook, the posts, the queue and the checkout for a product drop.
 
 **The site in one sentence:** the hero *is* the Fulmen app, full screen on black, and every section after it speaks the same language. Glass "sunset" orbs drawn in WebGL follow your cursor. Rows and buttons are pills, panels look like app windows, and the dusk gradient (navy → lavender → peach → ember) is the only colour.
